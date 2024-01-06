@@ -197,8 +197,12 @@ class LatexGenerator(Backend):
         names = self.gen_names(hyp.names)
         hbody = [self.gen_code(hyp.body)] if hyp.body else []
         with macros.hyp(args=[names], optargs=hbody, verbatim=True):
-            self.gen_code(hyp.type)
-            self.gen_mrefs(hyp)
+           self.gen_code(hyp.type)
+           if hyp.body != None:
+               self.gen_txt(r":= ")
+               self.gen_code(hyp.body)
+           self.gen_txt(r" ")
+           self.gen_mrefs(hyp)
 
     def gen_goal(self, goal):
         """Serialize a goal to LaTeX."""
