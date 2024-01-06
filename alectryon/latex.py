@@ -195,8 +195,7 @@ class LatexGenerator(Backend):
 
     def gen_hyp(self, hyp):
         names = self.gen_names(hyp.names)
-        hbody = [self.gen_code(hyp.body)] if hyp.body else []
-        with macros.hyp(args=[names], optargs=hbody, verbatim=True):
+        with macros.hyp(args=[names], optargs=[], verbatim=True):
            self.gen_code(hyp.type)
            if hyp.body != None:
                self.gen_txt(r":= ")
